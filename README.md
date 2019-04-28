@@ -35,6 +35,12 @@ Declare Variable
   {
     path: '/reset_password/:username/:code'
   },
+  {
+    path: '/referrals'
+  },
+  {
+    path: '/refer_register/:email/:code'
+  },
 ```
 
 # index.js
