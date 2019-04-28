@@ -1,5 +1,16 @@
 # basic
 
+# config
+Declare Variable 
+```javascript
+  APP_NAME: '',
+  APP_EMAIL: '',
+  USER_TYPE: [{
+    title: 'USER'
+  }, {
+    title: 'ADMIN'
+  }]
+```
 # routes
 
 ```javascript
