@@ -2,10 +2,10 @@
   <div class="col-sm-12 col-md-6 col-lg-4 mx-auto">
     <div class="login-wrapper">
       <div class="login-header" style="margin-top: 75px;">
-        <img src="../../assets/img/logo.png" v-on:click="redirect('/')">
+        <img src="../../../assets/img/logo.png" v-on:click="redirect('/')">
       </div>
       <span style="width:100%;float:left;text-align:center;font-size:20px;margin-bottom:20px;">
-        Login to <b class="text-primary">ID FACTORY</b>
+        Login to <b class="text-primary">{{config.APP_NAME}}</b>
       </span>
       <div class="login-message-holder login-spacer" v-if="errorMessage != null">
         <span class="text-danger"><b>Oops!</b> {{errorMessage}}</span>
@@ -153,8 +153,9 @@
 }
 </style>
 <script>
-import ROUTER from '../../router'
-import AUTH from '../../services/auth'
+import ROUTER from '../../../router'
+import AUTH from '../../../services/auth'
+import CONFIG from '../../../config.js'
 export default {
   mounted(){
   },
@@ -166,7 +167,8 @@ export default {
       user: AUTH.user,
       tokenData: AUTH.tokenData,
       otpCode: null,
-      otpErrorCode: null
+      otpErrorCode: null,
+      config: CONFIG
     }
   },
   methods: {
@@ -178,7 +180,7 @@ export default {
           $('#loading').css({'display': 'none'})
         }, (response, status) => {
           $('#loading').css({'display': 'none'})
-          this.errorMessage = (status === 401) ? 'Username and Password did not matched.' : 'Cannot log in? Contact us through email: support@idfactory.ph'
+          this.errorMessage = (status === 401) ? 'Username and Password did not matched.' : 'Cannot log in? Contact us through email: ' + this.config.APP_EMAIL
         })
       }else{
         this.errorMessage = 'Please fill up all the required fields.'

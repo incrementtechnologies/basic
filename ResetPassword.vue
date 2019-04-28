@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-lg-4 col-md-6 mx-auto custom-holder">
       <div class="signup-header" style="margin-top: 50px;">
-        <img src="../../assets/img/logo.png" v-on:click="redirect('/')">
+        <img src="../../../assets/img/logo.png" v-on:click="redirect('/')">
       </div>
       <span style="width:100%;float:left;text-align:center;font-size:20px;margin-bottom:20px;">
         Reset Password
@@ -113,7 +113,9 @@
 }
 </style>
 <script>
-import ROUTER from '../../router'
+import ROUTER from '../../../router'
+import AUTH from '../../../services/auth'
+import CONFIG from '../../../config.js'
 export default {
   name: '',
   components: {
@@ -132,7 +134,8 @@ export default {
       cPassword: null,
       code: this.$route.params.code,
       username: this.$route.params.username,
-      updateFlag: false
+      updateFlag: false,
+      config: CONFIG
     }
   },
   methods: {

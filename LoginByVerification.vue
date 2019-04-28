@@ -3,7 +3,7 @@
     <div class="col-md-6 col-lg-4 mx-auto signup-container">
       <div class="login-wrapper">
         <div class="signup-header" style="margin-top: 50px;">
-          <img src="../../assets/img/logo.png" v-on:click="redirect('/')">
+          <img src="../../../assets/img/logo.png" v-on:click="redirect('/')">
         </div>
         <span style="width:100%;float:left;text-align:center;font-size:20px;margin-bottom:10px;">
           Verification
@@ -87,8 +87,9 @@
 }
 </style>
 <script>
-import ROUTER from '../../router'
-import AUTH from '../../services/auth'
+import ROUTER from '../../../router'
+import AUTH from '../../../services/auth'
+import CONFIG from '../../../config.js'
 export default {
   mounted(){
     this.username = this.$route.params.username
@@ -107,12 +108,13 @@ export default {
       flag: null,
       message: null,
       user: AUTH.user,
-      verified: false
+      verified: false,
+      config: CONFIG
     }
   },
   methods: {
     setMessage(){
-      this.message = 'Hi ' + this.username + '! Please click the button to verify your email address here in ClassWorx'
+      this.message = 'Hi ' + this.username + '! Please click the button to verify your email address here in ' + this.config.APP_NAME
     },
     retrieveAccount(){
       let parameter = {

@@ -6,7 +6,7 @@
           <img src="../../assets/img/logo.png" v-on:click="redirect('/')">
         </div>
         <span style="width:100%;float:left;text-align:center;font-size:20px;margin-bottom:20px;">
-          Register to <b class="text-primary">ID FACTORY</b>
+          Register to <b class="text-primary">{{config.APP_NAME}}</b>
         </span>
         <span class="options">
           <button v-bind:class="{'btn-primary': type === 'USER'}" class="btn btn-default" @click="type = 'USER'" style="margin-right: 1%;">Customer</button>
@@ -146,9 +146,9 @@
 }
 </style>
 <script>
-import ROUTER from '../../router'
-import AUTH from '../../services/auth'
-import CONFIG from '../../config.js'
+import ROUTER from '../../../router'
+import AUTH from '../../../services/auth'
+import CONFIG from '../../../config.js'
 export default {
   mounted(){
     // this.getSchools()
@@ -165,7 +165,8 @@ export default {
       tokenData: AUTH.tokenData,
       flag: false,
       schools: null,
-      schoolIndex: null
+      schoolIndex: null,
+      config: CONFIG
     }
   },
   methods: {
@@ -223,7 +224,7 @@ export default {
       AUTH.authenticate(this.username, this.password, (response) => {
         ROUTER.push('dashboard')
       }, (response, status) => {
-        this.errorMessage = (status === 401) ? 'Your username and password did not matched.' : 'Cannot log in? Contact us through email: support@idfactories.com'
+        this.errorMessage = (status === 401) ? 'Your username and password did not matched.' : 'Cannot log in? Contact us through email: ' + this.config.APP_EMAIL
       })
     },
     openModal(id){

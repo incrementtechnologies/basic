@@ -3,10 +3,10 @@
     <div class="col-md-6 col-lg-4 mx-auto signup-container">
       <div class="login-wrapper">
         <div class="site-title">
-          <img src="../../assets/img/logo.png">
+          <img src="../../../assets/img/logo.png">
           <span class="app-name">
             <label class="text-primary">
-             <b class="text-primary">ID FACTORY</b>
+             <b class="text-primary">{{config.APP_NAME}}</b>
             </label> 
           </span>
         </div>
@@ -98,15 +98,17 @@
 }
 </style>
 <script>
-import ROUTER from '../../router'
-import AUTH from '../../services/auth'
+import ROUTER from '../../../router'
+import AUTH from '../../../services/auth'
+import CONFIG from '../../../config.js'
 export default {
   mounted(){
     this.email = this.$route.params.email
   },
   data(){
     return {
-      email: this.$route.params.email
+      email: this.$route.params.email,
+      config: CONFIG
     }
   },
   methods: {
