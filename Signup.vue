@@ -3,14 +3,14 @@
     <div class="col-md-6 col-lg-4 mx-auto signup-container">
       <div class="signup-wrapper">
         <div class="signup-header" style="margin-top: 50px;">
-          <img src="../../assets/img/logo.png" v-on:click="redirect('/')">
+          <img src="../../../assets/img/logo.png" v-on:click="redirect('/')">
         </div>
         <span style="width:100%;float:left;text-align:center;font-size:20px;margin-bottom:20px;">
           Register to <b class="text-primary">{{config.APP_NAME}}</b>
         </span>
         <span class="options">
-          <button v-bind:class="{'btn-primary': type === 'USER'}" class="btn btn-default" @click="type = 'USER'" style="margin-right: 1%;">Customer</button>
-          <button v-bind:class="{'btn-primary': type === 'PARTNER'}" class="btn btn-default" @click="type = 'PARTNER'" style="margin-left: 1%;">Partner</button>
+          <button v-bind:class="{'btn-primary': type === config.USER_TYPE[0].title}" class="btn btn-default" @click="type = config.USER_TYPE[0].title" style="margin-right: 1%;">{{config.USER_TYPE[0].title}}</button>
+          <button v-bind:class="{'btn-primary': type === config.USER_TYPE[1].title}" class="btn btn-default" @click="type = config.USER_TYPE[1].title" style="margin-left: 1%;">{{config.USER_TYPE[1].title}}</button>
         </span>
         <div class="signup-holder">
           <div class="login-message-holder login-spacer text-center" v-if="errorMessage != ''">
@@ -159,7 +159,7 @@ export default {
       email: '',
       password: '',
       cpassword: '',
-      type: 'USER',
+      type: CONFIG.USER_TYPE[0].title,
       errorMessage: '',
       user: AUTH.user,
       tokenData: AUTH.tokenData,

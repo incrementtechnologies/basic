@@ -3,7 +3,7 @@
     <div class="col-md-6 col-lg-4 mx-auto signup-container">
       <div class="signup-wrapper">
         <div class="signup-header" style="margin-top: 50px;">
-          <img src="../../assets/img/logo.png" v-on:click="redirect('/')">
+          <img src="../../../assets/img/logo.png" v-on:click="redirect('/')">
         </div>
         <span style="width:100%;float:left;text-align:center;font-size:20px;margin-bottom:20px;">
           Register as partner to <b class="text-primary">ID FACTORY</b>
@@ -116,9 +116,9 @@
 }
 </style>
 <script>
-import ROUTER from '../../router'
-import AUTH from '../../services/auth'
-import CONFIG from '../../config.js'
+import ROUTER from '../../../router'
+import AUTH from '../../../services/auth'
+import CONFIG from '../../../config.js'
 export default {
   mounted(){
     // this.getSchools()

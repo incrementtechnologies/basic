@@ -9,8 +9,8 @@
           Register to <b class="text-primary">{{config.APP_NAME}}</b>
         </span>
         <span class="options">
-          <button v-bind:class="{'btn-primary': type === 'USER'}" class="btn btn-default" @click="type = 'USER'" style="margin-right: 1%;">Register me as Customer</button>
-          <button v-bind:class="{'btn-primary': type === 'PARTNER'}" class="btn btn-default" @click="type = 'PARTNER'" style="margin-left: 1%;">Register me as Partner</button>
+          <button v-bind:class="{'btn-primary': type === config.USER_TYPE[0].title}" class="btn btn-default" @click="type = config.USER_TYPE[0].title" style="margin-right: 1%;">{{config.USER_TYPE[0].title}}</button>
+          <button v-bind:class="{'btn-primary': type === config.USER_TYPE[1].title}" class="btn btn-default" @click="type = config.USER_TYPE[1].title" style="margin-left: 1%;">{{config.USER_TYPE[1].title}}</button>
         </span>
         
         <div class="signup-holder">
