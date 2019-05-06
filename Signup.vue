@@ -207,8 +207,10 @@ export default {
       ROUTER.push(parameter)
     },
     validate(){
-      if(this.username.length >= 6 && this.email !== null && this.password !== null && this.password.localeCompare(this.cpassword) === 0 && this.type !== null){
+      if(this.username.length >= 6 && this.email !== null && this.password !== null && this.password.length >= 6 && this.password.localeCompare(this.cpassword) === 0 && this.type !== null && AUTH.validateEmail(this.email) === true){
         this.flag = true
+      }else if(AUTH.validateEmail(this.email) === false){
+        this.errorMessage = 'You have entered an invalid email address.'
       }else if(this.username.length < 6){
         this.errorMessage = 'Username must be atleast 6 characters.'
       }else if(this.password.length < 6){
