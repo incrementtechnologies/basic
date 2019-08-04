@@ -56,7 +56,12 @@
     </div>
   </div>
 </template>
-<style scoped>
+<style scoped lang="scss">
+@import "~assets/style/colors.scss";
+.bg-primary{
+  background: $primary !important; 
+}
+
 .login-wrapper{
   width: 80%;
   margin: 0 10% 50px 10%;
