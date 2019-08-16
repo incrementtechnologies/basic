@@ -8,7 +8,7 @@
         <span style="width:100%;float:left;text-align:center;font-size:20px;margin-bottom:20px;">
           Register to <b class="text-primary">{{config.APP_NAME}}</b>
         </span>
-        <span class="options" v-if="config.USER_TYPE.length === 2">
+<!--         <span class="options" v-if="config.USER_TYPE.length === 2">
           <button v-bind:class="{'btn-primary': type === config.USER_TYPE[0].title}" class="btn btn-default" @click="type = config.USER_TYPE[0].title" style="margin-right: 1%;">{{config.USER_TYPE[0].title}}</button>
           <button v-bind:class="{'btn-primary': type === config.USER_TYPE[1].title}" class="btn btn-default" @click="type = config.USER_TYPE[1].title" style="margin-left: 1%;">{{config.USER_TYPE[1].title}}</button>
         </span>
@@ -16,7 +16,7 @@
           <button v-bind:class="{'btn-primary': type === config.USER_TYPE[0].title}" class="btn btn-default" @click="type = config.USER_TYPE[0].title" style="width: 31% !important;argin-right: 1%; margin-left: 2%;">{{config.USER_TYPE[0].title}}</button>
           <button v-bind:class="{'btn-primary': type === config.USER_TYPE[1].title}" class="btn btn-default" @click="type = config.USER_TYPE[1].title" style="width: 31% !important;margin-left: 1%;">{{config.USER_TYPE[1].title}}</button>
           <button v-bind:class="{'btn-primary': type === config.USER_TYPE[2].title}" class="btn btn-default" @click="type = config.USER_TYPE[2].title" style="width: 31% !important;margin-left: 1%; margin-right: 2%;">{{config.USER_TYPE[2].title}}</button>
-        </span>
+        </span> -->
         <div class="signup-holder">
           <div class="login-message-holder login-spacer text-center" v-if="errorMessage != ''">
             <span class="text-danger text-center"><b>Oops!</b> {{errorMessage}}</span>
@@ -164,7 +164,7 @@ export default {
       email: '',
       password: '',
       cpassword: '',
-      type: CONFIG.USER_TYPE[0].title,
+      type: 'USER',
       errorMessage: '',
       user: AUTH.user,
       tokenData: AUTH.tokenData,
@@ -183,7 +183,8 @@ export default {
         password: this.password,
         config: CONFIG,
         account_type: this.type,
-        referral_code: null
+        referral_code: null,
+        status: 'ADMIN'
       }
       if(this.flag === true){
         $('#loading').css({'display': 'block'})
