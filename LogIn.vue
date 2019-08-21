@@ -5,7 +5,7 @@
         <img src="../../../assets/img/logo.png" v-on:click="redirect('/')">
       </div>
       <span style="width:100%;float:left;text-align:center;font-size:20px;margin-bottom:20px;">
-        Login to <b class="text-primary">{{config.APP_NAME}}</b>
+        Login to <b class="text-primary">{{common.APP_NAME}}</b>
       </span>
       <div class="login-message-holder login-spacer" v-if="errorMessage != null">
         <span class="text-danger"><b>Oops!</b> {{errorMessage}}</span>
@@ -158,9 +158,9 @@
 }
 </style>
 <script>
-import ROUTER from '../../../router'
-import AUTH from '../../../services/auth'
-import CONFIG from '../../../config.js'
+import ROUTER from 'src/router'
+import AUTH from 'src/services/auth'
+import COMMON from 'src/common.js'
 export default {
   mounted(){
   },
@@ -173,7 +173,7 @@ export default {
       tokenData: AUTH.tokenData,
       otpCode: null,
       otpErrorCode: null,
-      config: CONFIG
+      common: COMMON
     }
   },
   methods: {
@@ -185,7 +185,7 @@ export default {
           $('#loading').css({'display': 'none'})
         }, (response, status) => {
           $('#loading').css({'display': 'none'})
-          this.errorMessage = (status === 401) ? 'Username and Password did not matched.' : 'Cannot log in? Contact us through email: ' + this.config.APP_EMAIL
+          this.errorMessage = (status === 401) ? 'Username and Password did not matched.' : 'Cannot log in? Contact us through email: ' + this.common.APP_EMAIL
         })
       }else{
         this.errorMessage = 'Please fill up all the required fields.'

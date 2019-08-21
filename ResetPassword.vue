@@ -113,9 +113,10 @@
 }
 </style>
 <script>
-import ROUTER from '../../../router'
-import AUTH from '../../../services/auth'
-import CONFIG from '../../../config.js'
+import ROUTER from 'src/router'
+import AUTH from 'src/services/auth'
+import CONFIG from 'src/config.js'
+import COMMON from 'src/common.js'
 export default {
   name: '',
   components: {
@@ -135,7 +136,8 @@ export default {
       code: this.$route.params.code,
       username: this.$route.params.username,
       updateFlag: false,
-      config: CONFIG
+      config: CONFIG,
+      common: COMMON
     }
   },
   methods: {

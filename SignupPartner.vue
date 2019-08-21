@@ -6,7 +6,7 @@
           <img src="../../../assets/img/logo.png" v-on:click="redirect('/')">
         </div>
         <span style="width:100%;float:left;text-align:center;font-size:20px;margin-bottom:20px;">
-          Register as partner to <b class="text-primary">ID FACTORY</b>
+          Register as partner to <b class="text-primary">{{common.APP_NAME}}</b>
         </span>
         <div class="signup-holder">
           <div class="login-message-holder login-spacer text-center" v-if="errorMessage != ''">
@@ -116,9 +116,10 @@
 }
 </style>
 <script>
-import ROUTER from '../../../router'
-import AUTH from '../../../services/auth'
-import CONFIG from '../../../config.js'
+import ROUTER from 'src/router'
+import AUTH from 'src/services/auth'
+import CONFIG from 'src/config.js'
+import COMMON from 'src/common.js'
 export default {
   mounted(){
     // this.getSchools()
@@ -135,7 +136,8 @@ export default {
       tokenData: AUTH.tokenData,
       flag: false,
       schools: null,
-      schoolIndex: null
+      schoolIndex: null,
+      common: COMMON
     }
   },
   methods: {

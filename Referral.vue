@@ -6,11 +6,11 @@
           <img src="../../../assets/img/logo.png" v-on:click="redirect('/')">
         </div>
         <span style="width:100%;float:left;text-align:center;font-size:20px;margin-bottom:20px;">
-          Register to <b class="text-primary">{{config.APP_NAME}}</b>
+          Register to <b class="text-primary">{{common.APP_NAME}}</b>
         </span>
         <span class="options">
-          <button v-bind:class="{'btn-primary': type === config.USER_TYPE[0].title}" class="btn btn-default" @click="type = config.USER_TYPE[0].title" style="margin-right: 1%;">{{config.USER_TYPE[0].title}}</button>
-          <button v-bind:class="{'btn-primary': type === config.USER_TYPE[1].title}" class="btn btn-default" @click="type = config.USER_TYPE[1].title" style="margin-left: 1%;">{{config.USER_TYPE[1].title}}</button>
+          <button v-bind:class="{'btn-primary': type === common.USER_TYPE[0].title}" class="btn btn-default" @click="type = common.USER_TYPE[0].title" style="margin-right: 1%;">{{common.USER_TYPE[0].title}}</button>
+          <button v-bind:class="{'btn-primary': type === common.USER_TYPE[1].title}" class="btn btn-default" @click="type = common.USER_TYPE[1].title" style="margin-left: 1%;">{{common.USER_TYPE[1].title}}</button>
         </span>
         
         <div class="signup-holder">
@@ -140,7 +140,8 @@
 <script>
 import ROUTER from '../../../router'
 import AUTH from '../../../services/auth'
-import CONFIG from '../../../config.js'
+import CONFIG from 'src/config.js'
+import COMMON from 'src/common.js'
 export default {
   mounted(){
     // this.getSchools()
@@ -159,7 +160,8 @@ export default {
       flag: false,
       schools: null,
       schoolIndex: null,
-      config: CONFIG
+      config: CONFIG,
+      common: COMMON
     }
   },
   methods: {
@@ -217,7 +219,7 @@ export default {
       AUTH.authenticate(this.username, this.password, (response) => {
         ROUTER.push('dashboard')
       }, (response, status) => {
-        this.errorMessage = (status === 401) ? 'Your username and password did not matched.' : 'Cannot log in? Contact us through email: ' + this.config.APP_EMAIL
+        this.errorMessage = (status === 401) ? 'Your username and password did not matched.' : 'Cannot log in? Contact us through email: ' + this.common.APP_EMAIL
       })
     },
     openModal(id){

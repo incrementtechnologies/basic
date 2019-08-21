@@ -6,7 +6,7 @@
           <img src="../../../assets/img/logo.png">
           <span class="app-name">
             <label class="text-primary">
-             <b class="text-primary">{{config.APP_NAME}}</b>
+             <b class="text-primary">{{common.APP_NAME}}</b>
             </label> 
           </span>
         </div>
@@ -98,9 +98,10 @@
 }
 </style>
 <script>
-import ROUTER from '../../../router'
-import AUTH from '../../../services/auth'
-import CONFIG from '../../../config.js'
+import ROUTER from 'src/router'
+import AUTH from 'src/services/auth'
+import CONFIG from 'src/config.js'
+import COMMON from 'src/common.js'
 export default {
   mounted(){
     this.email = this.$route.params.email
@@ -108,7 +109,8 @@ export default {
   data(){
     return {
       email: this.$route.params.email,
-      config: CONFIG
+      config: CONFIG,
+      common: COMMON
     }
   },
   methods: {

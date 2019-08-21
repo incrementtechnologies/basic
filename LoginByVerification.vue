@@ -87,9 +87,9 @@
 }
 </style>
 <script>
-import ROUTER from '../../../router'
-import AUTH from '../../../services/auth'
-import CONFIG from '../../../config.js'
+import ROUTER from 'src/router'
+import AUTH from 'src/services/auth'
+import COMMON from 'src/common.js'
 export default {
   mounted(){
     this.username = this.$route.params.username
@@ -109,12 +109,12 @@ export default {
       message: null,
       user: AUTH.user,
       verified: false,
-      config: CONFIG
+      common: COMMON
     }
   },
   methods: {
     setMessage(){
-      this.message = 'Hi ' + this.username + '! Please click the button to verify your email address here in ' + this.config.APP_NAME
+      this.message = 'Hi ' + this.username + '! Please click the button to verify your email address here in ' + this.common.APP_NAME
     },
     retrieveAccount(){
       let parameter = {
