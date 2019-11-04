@@ -119,9 +119,6 @@ import CONFIG from 'src/config.js'
 import COMMON from 'src/common.js'
 export default {
   name: '',
-  components: {
-    'input-group': require('components/input_field/InputGroup.vue')
-  },
   mounted(){
     this.code = this.$route.params.code
     this.username = this.$route.params.username

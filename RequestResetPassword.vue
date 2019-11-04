@@ -112,9 +112,6 @@ import CONFIG from 'src/config.js'
 import COMMON from 'src/common.js'
 export default {
   name: '',
-  components: {
-    'input-group': require('components/input_field/InputGroup.vue')
-  },
   mounted(){
   },
   data(){
