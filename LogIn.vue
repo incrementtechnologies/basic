@@ -185,7 +185,7 @@ export default {
           $('#loading').css({'display': 'none'})
         }, (response, status) => {
           $('#loading').css({'display': 'none'})
-          this.errorMessage = (status === 401) ? 'Username and Password did not matched.' : 'Cannot log in? Contact us through email: ' + this.common.APP_EMAIL
+          this.errorMessage = (status === 401) ? 'Username and Password did not match.' : 'Cannot log in? Contact us through email: ' + this.common.APP_EMAIL
         })
       }else{
         this.errorMessage = 'Please fill up all the required fields.'

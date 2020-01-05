@@ -213,9 +213,9 @@ export default {
       }else if(this.username.length < 6){
         this.errorMessage = 'Username must be atleast 6 characters.'
       }else if(this.password.length < 6){
-        this.errorMessage = 'Password must be atleast 6 characters'
+        this.errorMessage = 'Password must be atleast 6 characters.'
       }else if(this.password.localeCompare(this.cpassword) !== 0){
-        this.errorMessage = 'Password did not matched'
+        this.errorMessage = 'Password did not match.'
       }else{
         this.errorMessage = 'Please fill in all required fields.'
         this.flag = false
@@ -225,7 +225,7 @@ export default {
       AUTH.authenticate(this.username, this.password, (response) => {
         ROUTER.push('dashboard')
       }, (response, status) => {
-        this.errorMessage = (status === 401) ? 'Your username and password did not matched.' : 'Cannot log in? Contact us through email: ' + this.common.APP_EMAIL
+        this.errorMessage = (status === 401) ? 'Your username and password did not match.' : 'Cannot log in? Contact us through email: ' + this.common.APP_EMAIL
       })
     },
     openModal(id){
