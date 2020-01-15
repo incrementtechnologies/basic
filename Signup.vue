@@ -214,6 +214,7 @@ export default {
         this.errorMessage = 'Username must be atleast 6 characters.'
       }else if(this.password.length < 6){
         this.errorMessage = 'Password must be atleast 6 characters.'
+        this.flag = false
       }else if(this.password.localeCompare(this.cpassword) !== 0){
         this.errorMessage = 'Password did not match.'
       }else{
