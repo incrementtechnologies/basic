@@ -29,31 +29,7 @@
         <button class="btn btn-secondary btn-block login-spacer" v-on:click="redirect('/signup')">Create Account Now!</button>
       </div>
     </div>
-    <div class="modal fade" id="otpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-          <div class="modal-header bg-primary">
-            <h5 class="modal-title" id="exampleModalLabel">OTP Confirmation</h5>
-            <button type="button" class="close" @click="cancelOTP()" aria-label="Close">
-              <span aria-hidden="true" class="text-white">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <span v-if="otpErrorCode !== null" class="text-danger text-center">
-                <label><b>Opps! </b>{{otpErrorCode}}</label>
-            </span>
-            <div class="form-group">
-              <label for="exampleInputEmail1">OTP Code</label>
-              <input type="text" class="form-control" placeholder="Type code here..." v-model="otpCode">
-            </div>
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-danger" @click="cancelOTP()">Cancel</button>
-              <button type="button" class="btn btn-primary" @click="continueLoginViaOTP()">Continue</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <authenticate-otp ref="authenticateOTP"></authenticate-otp>
   </div>
 </template>
 <style scoped lang="scss">
@@ -176,6 +152,9 @@ export default {
       common: COMMON
     }
   },
+  components: {
+    'authenticate-otp': require('modules/transfer/Otp.vue')
+  },
   methods: {
     logIn(){
       if(this.username !== null && this.username !== '' && this.password !== null && this.password !== ''){
@@ -202,31 +181,8 @@ export default {
       AUTH.deaunthenticate()
       $('#otpModal').modal('hide')
     },
-    continueLoginViaOTP(){
-      // compare otp here
-      let parameter = {
-        condition: [{
-          value: this.otpCode,
-          column: 'code',
-          clause: '='
-        }, {
-          value: AUTH.otpDataHolder.userInfo.id,
-          column: 'account_id',
-          clause: '='
-        }]
-      }
-      $('#loading').css({'display': 'block'})
-      this.APIRequest('notification_settings/retrieve', parameter).then(response => {
-        $('#loading').css({'display': 'none'})
-        if(response.data.length > 0){
-          this.otpErrorCode = null
-          $('#otpModal').modal('hide')
-          AUTH.proceedToLogin()
-        }else{
-          // display invalid code here.
-          this.otpErrorCode = 'Invalid OTP Code.'
-        }
-      })
+    successOTP(){
+      AUTH.proceedToLogin()
     }
   }
 }
