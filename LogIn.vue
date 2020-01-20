@@ -183,6 +183,11 @@ export default {
     },
     successOTP(){
       AUTH.proceedToLogin()
+      $('#authenticateOTP').modal({
+        backdrop: 'static',
+        keyboard: false,
+        show: false
+      })
     }
   }
 }
