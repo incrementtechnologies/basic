@@ -3,7 +3,7 @@
     <div class="col-md-6 col-lg-4 mx-auto signup-container">
       <div class="login-wrapper">
         <div class="signup-header" style="margin-top: 50px;">
-          <img src="../../../assets/img/logo.png" v-on:click="redirect('/')">
+          <img :src="require('src/assets/img/logo.png')" v-on:click="redirect('/')">
         </div>
         <span style="width:100%;float:left;text-align:center;font-size:20px;margin-bottom:10px;">
           Verification
@@ -14,7 +14,7 @@
             <div  style="margin-bottom: 25px !important;text-align: justify;" v-bind:class="{'text-danger': flag === false}" class="login-spacer">
               {{message}}
             </div>
-            <button class="btn btn-primary btn-block login-spacer" v-on:click="update()" v-if="verified === false">Continue</button>  
+            <button class="btn btn-primary btn-block login-spacer" v-on:click="update()" v-if="verified === false || user.userID > 0">Continue</button>  
             <button class="btn btn-danger btn-block login-spacer" v-on:click="redirect('/')" v-if="verified === true && user.userID <= 0">Back to Login</button>
           </div>
         </div>

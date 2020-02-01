@@ -2,7 +2,7 @@
   <div class="col-sm-12 col-md-6 col-lg-4 mx-auto">
     <div class="login-wrapper">
       <div class="login-header" style="margin-top: 75px;">
-        <img src="../../../assets/img/logo.png" v-on:click="redirect('/')">
+        <img :src="require('src/assets/img/logo.png')" v-on:click="redirect('/')">
       </div>
       <span style="width:100%;float:left;text-align:center;font-size:20px;margin-bottom:20px;">
         Login to <b class="text-primary">{{common.APP_NAME}}</b>
@@ -27,6 +27,9 @@
         </div>
         <br>
         <button class="btn btn-secondary btn-block login-spacer" v-on:click="redirect('/signup')">Create Account Now!</button>
+
+<!--         <button class="btn btn-secondary btn-block login-spacer" v-on:click="redirect('/paymentConfirmation/kennettecanales@gmail.com/BWGFK8XY74RM1C2LZVEITPAJQ9D65N03/U4381TYWQKLIGS79DJNME5AVBRZPFH2O')">Payment Confirmation</button> -->
+<!--         <button class="btn btn-secondary btn-block login-spacer" v-on:click="redirect('/login_verification/magalso12/50DBXMFRGU6WI8VC3NA1OHLP7YTE92JS')">Verification</button> -->
       </div>
     </div>
     <authenticate-otp ref="authenticateOTP"></authenticate-otp>
