@@ -14,7 +14,8 @@
             <div  style="margin-bottom: 25px !important;text-align: justify;" v-bind:class="{'text-danger': flag === false}" class="login-spacer">
               {{message}}
             </div>
-            <button class="btn btn-primary btn-block login-spacer" v-on:click="update()" v-if="verified === false || user.userID > 0">Continue</button>  
+            <button class="btn btn-primary btn-block login-spacer" v-on:click="update()" v-if="verified === false">Continue</button>
+            <button class="btn btn-primary btn-block login-spacer" v-on:click="redirect('/dashboard')()" v-if="verified === true && user.userID > 0">Go to dashboard</button>
             <button class="btn btn-danger btn-block login-spacer" v-on:click="redirect('/')" v-if="verified === true && user.userID <= 0">Back to Login</button>
           </div>
         </div>
