@@ -12,7 +12,7 @@
       </div>
       <div>
         <div class="input-group login-spacer">
-          <span class="input-group-addon" id="addon-1"><i class="fa fa-user"></i></span>
+          <div class="input-group-addon" id="addon-1"><i class="fa fa-user"></i></div>
           <input type="text" class="form-control form-control-login" placeholder="Username or Email" aria-describedby="addon-1" v-model="username">
         </div>
         <div class="input-group login-spacer">
@@ -88,7 +88,11 @@
 }
 
 .input-group-addon{
-  width: 50px;
+  width: 15% !important;
+  text-align: center !important;
+  padding: 0px !important;
+  display: block !important;
+  line-height: 43px !important;
 }
 
 .form-control-login{

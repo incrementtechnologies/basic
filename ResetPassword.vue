@@ -104,6 +104,14 @@
 .input-group label b:hover{
   cursor: pointer;
 }
+
+.input-group-addon{
+  width: 15% !important;
+  text-align: center !important;
+  padding: 0px !important;
+  display: block !important;
+  line-height: 43px !important;
+}
 /*-------------- Extra Small Screen for Mobile Phones --------------*/
 @media (max-width: 991px){
   .custom-holder{

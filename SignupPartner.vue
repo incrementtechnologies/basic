@@ -85,6 +85,14 @@
 .btn{
   height: 50px !important;
 }
+.input-group-addon{
+  width: 15% !important;
+  text-align: center !important;
+  padding: 0px !important;
+  display: block !important;
+  line-height: 43px !important;
+}
+
 .input-group{
   margin-top: 5px;
   margin-bottom: 5px;
