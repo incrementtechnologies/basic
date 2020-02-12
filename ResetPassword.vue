@@ -15,11 +15,11 @@
             <span class="text-center">Your password was successully updated! To login click the button below.</span>
         </div>
         <div class="input-group form-spacer" v-if="updateFlag === false">
-          <span class="input-group-addon recover-addon" id="addon-2">New Password</span>
+          <span class="input-group-addon recover-addon" id="addon-2"><i class="fa fa-key"></i></span>
           <input type="password" class="form-control form-control-login" placeholder="New Password" aria-describedby="addon-2" v-model="password">
         </div>
         <div class="input-group form-spacer" v-if="updateFlag === false">
-          <span class="input-group-addon recover-addon" id="addon-2">Confirm Password</span>
+          <span class="input-group-addon recover-addon" id="addon-2"><i class="fa fa-key"></i></span>
           <input type="password" class="form-control form-control-login" placeholder="Confirm New Password" aria-describedby="addon-2" v-model="cPassword">
         </div>
         <br>
