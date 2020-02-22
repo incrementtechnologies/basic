@@ -214,8 +214,10 @@ export default {
       ROUTER.push(parameter)
     },
     validate(){
-      if(this.username.length >= 6 && this.email !== null && this.password !== null && this.password.length >= 6 && this.password.localeCompare(this.cpassword) === 0 && this.type !== null && AUTH.validateEmail(this.email) === true){
-        this.flag = true
+      let reqWhiteSpace = /\s/
+      if(reqWhiteSpace.test(this.username)){
+        this.errorMessage = 'Username should not contain a space.'
+        this.flag = false
       }else if(AUTH.validateEmail(this.email) === false){
         this.errorMessage = 'You have entered an invalid email address.'
       }else if(this.username.length < 6){
@@ -225,6 +227,9 @@ export default {
         this.flag = false
       }else if(this.password.localeCompare(this.cpassword) !== 0){
         this.errorMessage = 'Password did not match.'
+      }else if(this.username.length >= 6 && this.email !== null && this.password !== null && this.password.length >= 6 && this.password.localeCompare(this.cpassword) === 0 && this.type !== null && AUTH.validateEmail(this.email) === true){
+        this.errorMessage = null
+        this.flag = true
       }else{
         this.errorMessage = 'Please fill in all required fields.'
         this.flag = false
