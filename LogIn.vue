@@ -160,7 +160,7 @@ export default {
     }
   },
   components: {
-    'authenticate-otp': require('modules/transfer/Otp.vue')
+    'authenticate-otp': require('components/increment/generic/otp/Otp.vue')
   },
   methods: {
     logIn(){
@@ -171,7 +171,13 @@ export default {
           $('#loading').css({'display': 'none'})
         }, (response, status) => {
           $('#loading').css({'display': 'none'})
-          this.errorMessage = (status === 401) ? 'Username and Password did not match.' : 'Cannot log in? Contact us through email: ' + this.common.APP_EMAIL
+          if(status === 401){
+            this.errorMessage = 'Username and Password did not match.'
+          }else if(status === 402){
+            this.errorMessage = 'Account email address is not verified!'
+          }else{
+            this.errorMessage = 'Cannot log in? Contact us through email: ' + this.common.APP_EMAIL
+          }
         })
       }else{
         this.errorMessage = 'Please fill up all the required fields.'
