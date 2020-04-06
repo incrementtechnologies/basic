@@ -192,7 +192,7 @@ export default {
     },
     cancelOTP(){
       AUTH.deaunthenticate()
-      $('#otpModal').modal('hide')
+      $('#authenticateOTP').modal('hide')
     },
     successOTP(){
       AUTH.proceedToLogin()
