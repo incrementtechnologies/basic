@@ -174,7 +174,7 @@ export default {
           if(status === 401){
             this.errorMessage = 'Username and Password did not match.'
           }else if(status === 402){
-            this.errorMessage = 'Account email address is not verified!'
+            this.errorMessage = response.error
           }else{
             this.errorMessage = 'Cannot log in? Contact us through email: ' + this.common.APP_EMAIL
           }

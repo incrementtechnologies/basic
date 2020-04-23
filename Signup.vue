@@ -214,16 +214,22 @@ export default {
       ROUTER.push(parameter)
     },
     validate(){
+      this.errorMessage = null
       let reqWhiteSpace = /\s/
       if(reqWhiteSpace.test(this.username)){
         this.errorMessage = 'Username should not contain a space.'
         this.flag = false
       }else if(AUTH.validateEmail(this.email) === false){
         this.errorMessage = 'You have entered an invalid email address.'
+        this.flag = false
       }else if(this.username.length < 6){
         this.errorMessage = 'Username must be atleast 6 characters.'
-      }else if(this.password.length < 6){
-        this.errorMessage = 'Password must be atleast 6 characters.'
+        this.flag = false
+      }else if(this.password.length < COMMON.passwordLimit){
+        this.errorMessage = 'Password must be atleast ' + COMMON.passwordLimit + ' characters.'
+        this.flag = false
+      }else if(/^[a-zA-Z0-9]+$/.test(this.password)){
+        this.errorMessage = 'Password must be alphanumeric characters.'
         this.flag = false
       }else if(this.password.localeCompare(this.cpassword) !== 0){
         this.errorMessage = 'Password did not match.'
@@ -239,7 +245,14 @@ export default {
       AUTH.authenticate(this.username, this.password, (response) => {
         ROUTER.push('dashboard')
       }, (response, status) => {
-        this.errorMessage = (status === 401) ? 'Your username and password did not match.' : 'Cannot log in? Contact us through email: ' + this.common.APP_EMAIL
+        $('#loading').css({'display': 'none'})
+        if(status === 401){
+          this.errorMessage = 'Username and Password did not match.'
+        }else if(status === 402){
+          this.errorMessage = response.error
+        }else{
+          this.errorMessage = 'Cannot log in? Contact us through email: ' + this.common.APP_EMAIL
+        }
       })
     },
     openModal(id){
