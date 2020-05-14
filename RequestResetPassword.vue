@@ -42,7 +42,7 @@
 }
 
 .signup-header img{
-  width: 70px;
+  width: auto !important;
   height: 70px;
 }
 

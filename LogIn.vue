@@ -56,7 +56,7 @@
 
 .login-header img{
   height: 100px !important;
-  width: 100px !important;
+  width: auto !important;
 }
 
 .login-header img:hover{
@@ -169,6 +169,7 @@ export default {
         AUTH.authenticate(this.username, this.password, (response) => {
           this.errorMessage = null
           $('#loading').css({'display': 'none'})
+          AUTH.tokenData.loading = true
         }, (response, status) => {
           $('#loading').css({'display': 'none'})
           if(status === 401){

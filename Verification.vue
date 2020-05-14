@@ -81,8 +81,8 @@
   float: left;
 }
 .site-title img{
-  width: 50px;
-  width: 50px;
+  height: 50px;
+  width: auto !important;
   float: left;
   margin-right: 10px;
 }

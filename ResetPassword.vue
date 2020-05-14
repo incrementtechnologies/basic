@@ -49,7 +49,7 @@
 
 .signup-header img{
   height: 100px !important;
-  width: 100px !important;
+  width: auto !important;
 }
 .signup-header img:hover{
   cursor: pointer;
