@@ -229,7 +229,7 @@ export default {
         this.errorMessage = 'Password must be atleast ' + COMMON.passwordLimit + ' characters.'
         this.flag = false
       }else if(/^[a-zA-Z0-9]+$/.test(this.password)){
-        this.errorMessage = 'Password must be alphanumeric characters.'
+        this.errorMessage = 'Password must be alphanumeric characters. It should contain 1 number, 1 special character and letters.'
         this.flag = false
       }else if(this.password.localeCompare(this.cpassword) !== 0){
         this.errorMessage = 'Password did not match.'
