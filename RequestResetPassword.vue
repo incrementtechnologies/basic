@@ -33,7 +33,7 @@
   margin-top: 25px;
 }
 .custom-holder{
-  margin-top: 100px;
+  margin-top: 0px;
 }
 
 .signup-header{
