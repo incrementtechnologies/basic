@@ -9,7 +9,7 @@
           Register to <b class="text-primary">{{common.APP_NAME}}</b>
         </span>
         <div class="signup-holder">
-          <div class="login-message-holder login-spacer text-center" v-if="errorMessage != ''">
+          <div class="login-message-holder login-spacer text-center" v-if="errorMessage !== null">
             <span class="text-danger text-center"><b>Oops!</b> {{errorMessage}}</span>
           </div>
           <div>
@@ -165,7 +165,7 @@ export default {
       password: '',
       cpassword: '',
       type: 'USER',
-      errorMessage: '',
+      errorMessage: null,
       user: AUTH.user,
       tokenData: AUTH.tokenData,
       flag: false,
