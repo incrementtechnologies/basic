@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row holder">
     <div class="col-lg-4 col-md-6 mx-auto custom-holder">
       <div class="signup-header" style="margin-top: 50px;">
         <img src="../../../assets/img/logo.png" v-on:click="redirect('/')">
@@ -29,6 +29,9 @@
   </div>
 </template>
 <style scoped>
+.holder{
+  margin-top: 25px;
+}
 .custom-holder{
   margin-top: 100px;
 }

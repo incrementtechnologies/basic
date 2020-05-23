@@ -1,5 +1,5 @@
 <template>
-  <div class="col-sm-12 col-md-6 col-lg-4 mx-auto">
+  <div class="col-sm-12 col-md-6 col-lg-4 mx-auto holder">
     <div class="login-wrapper">
       <div class="login-header" style="margin-top: 75px;">
         <img :src="require('src/assets/img/logo.png')" v-on:click="redirect('/')">
@@ -37,6 +37,10 @@
 </template>
 <style scoped lang="scss">
 @import "~assets/style/colors.scss";
+.holder{
+  margin-top: 25px;
+}
+
 .bg-primary{
   background: $primary !important; 
 }

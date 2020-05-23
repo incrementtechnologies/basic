@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row holder">
     <div class="col-md-6 col-lg-4 mx-auto signup-container">
       <div class="signup-wrapper">
         <div class="signup-header" style="margin-top: 50px;">
@@ -41,7 +41,7 @@
 <style scoped>
 
 
-.signup-container{
+.signup-container, .holder{
   margin-top: 25px;
 }
 
