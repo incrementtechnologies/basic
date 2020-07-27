@@ -180,6 +180,9 @@ export default {
       }else if(this.password.length < 8){
         this.flag = false
         this.errorMessage = 'Password length must be greater than 8 digit characters.'
+      }else if(/^[a-zA-Z0-9]+$/.test(this.password)){
+        this.flag = false
+        this.errorMessage = 'Password must be alphanumeric characters. It should contain 1 number, 1 special character and letters.'
       }else{
         this.flag = true
         this.errorMessage = null
