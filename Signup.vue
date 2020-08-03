@@ -21,13 +21,21 @@
               <span class="input-group-addon" id="addon-1"><i class="fa fa-envelope"></i></span>
               <input type="text" class="form-control form-control-login" placeholder="Email" aria-describedby="addon-1" v-model="email">
             </div>
-            <div class="input-group login-spacer">
+            <div class="input-group">
               <span class="input-group-addon" id="addon-2"><i class="fa fa-key"></i></span>
-              <input type="password" class="form-control form-control-login" placeholder="Password" aria-describedby="addon-2" v-model="password">
+                <input class="form-control form-control-login" :type="visibility" placeholder="Password" aria-describedby="addon-2" v-model="password">
+                <span class="input-group-addon">
+                  <i v-if="visibility == 'password'" @click="showPassword('password')" class="fa fa-eye" aria-hidden="true"></i>
+                  <i v-if="visibility == 'text'" @click="hidePassword('password')" class="fa fa-eye-slash" aria-hidden="true"></i>
+                </span>
             </div>
             <div class="input-group login-spacer">
               <span class="input-group-addon" id="addon-2"><i class="fa fa-key"></i></span>
-              <input type="password" class="form-control form-control-login" placeholder="Confirm Password" aria-describedby="addon-2" v-model="cpassword">
+                <input class="form-control form-control-login" :type="visibilityC" placeholder="Confirm Password" aria-describedby="addon-2" v-model="cpassword">
+                <span class="input-group-addon">
+                  <i v-if="visibilityC == 'password'" @click="showPassword('cpassword')" class="fa fa-eye" aria-hidden="true"></i>
+                  <i v-if="visibilityC == 'text'" @click="hidePassword('cpassword')" class="fa fa-eye-slash" aria-hidden="true"></i>
+                </span>
             </div>
             <button class="btn btn-primary btn-block login-spacer" v-on:click="signUp()">Signup</button>
             <div class="input-group login-spacer">
@@ -170,10 +178,26 @@ export default {
       schools: null,
       schoolIndex: null,
       config: CONFIG,
-      common: COMMON
+      common: COMMON,
+      visibility: 'password',
+      visibilityC: 'password'
     }
   },
   methods: {
+    showPassword(pass) {
+      if(pass === 'password'){
+        this.visibility = 'text'
+      } else {
+        this.visibilityC = 'text'
+      }
+    },
+    hidePassword(pass) {
+      if(pass === 'cpassword'){
+        this.visibilityC = 'password'
+      } else {
+        this.visibility = 'password'
+      }
+    },
     signUp(){
       this.validate()
       let parameter = {

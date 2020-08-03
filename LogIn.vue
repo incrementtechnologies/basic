@@ -17,7 +17,13 @@
         </div>
         <div class="input-group login-spacer">
           <span class="input-group-addon" id="addon-2"><i class="fa fa-key"></i></span>
-          <input type="password" class="form-control form-control-login" placeholder="********" aria-describedby="addon-2" v-model="password" @keyup.enter="logIn()">
+          <div class="input-group">
+            <input class="form-control form-control-login" :type="visibility" placeholder="********" aria-describedby="addon-2" v-model="password" @keyup.enter="logIn()">
+            <span class="input-group-addon password">
+              <i v-if="visibility == 'password'" @click="showPassword()" class="fa fa-eye" aria-hidden="true"></i>
+              <i v-if="visibility == 'text'" @click="hidePassword()" class="fa fa-eye-slash" aria-hidden="true"></i>
+            </span>
+          </div>
         </div>
         <button class="btn btn-primary btn-block login-spacer" v-on:click="logIn()">Login</button>
         <button class="btn btn-warning btn-block login-spacer" v-on:click="redirect('/request_reset_password')">Forgot your Password?</button>
@@ -160,13 +166,20 @@ export default {
       tokenData: AUTH.tokenData,
       otpCode: null,
       otpErrorCode: null,
-      common: COMMON
+      common: COMMON,
+      visibility: 'password'
     }
   },
   components: {
     'authenticate-otp': require('components/increment/generic/otp/Otp.vue')
   },
   methods: {
+    showPassword() {
+      this.visibility = 'text'
+    },
+    hidePassword() {
+      this.visibility = 'password'
+    },
     logIn(){
       if(this.username !== null && this.username !== '' && this.password !== null && this.password !== ''){
         $('#loading').css({'display': 'block'})
