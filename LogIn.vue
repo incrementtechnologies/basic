@@ -7,8 +7,8 @@
       <span style="width:100%;float:left;text-align:center;font-size:20px;margin-bottom:20px;">
         Login to <b class="text-primary">{{common.APP_NAME}}</b>
       </span>
-      <div class="login-message-holder login-spacer" v-if="errorMessage != null">
-        <span class="text-danger"><b>Oops!</b> {{errorMessage}}</span>
+      <div class="login-message-holder login-spacer text-center" v-if="errorMessage != null">
+        <span class="text-danger text-center"><b>Oops!</b> {{errorMessage}}</span>
       </div>
       <div>
         <div class="input-group login-spacer">
@@ -18,8 +18,8 @@
         <div class="input-group login-spacer">
           <span class="input-group-addon" id="addon-2"><i class="fa fa-key"></i></span>
           <div class="input-group">
-            <input class="form-control form-control-login" :type="visibility" placeholder="********" aria-describedby="addon-2" v-model="password" @keyup.enter="logIn()">
-            <span class="input-group-addon password">
+            <input class="form-control form-control-login" style="border-right-style: none;" :type="visibility" placeholder="********" aria-describedby="addon-2" v-model="password" @keyup.enter="logIn()">
+            <span style="background: white;" class="input-group-addon password">
               <i v-if="visibility == 'password'" @click="showPassword()" class="fa fa-eye" aria-hidden="true"></i>
               <i v-if="visibility == 'text'" @click="hidePassword()" class="fa fa-eye-slash" aria-hidden="true"></i>
             </span>

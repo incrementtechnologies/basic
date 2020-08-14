@@ -5,39 +5,41 @@
         <img :src="require('src/assets/img/logo.png')" v-on:click="redirect('/')">
       </div>
       <span style="width:100%;float:left;text-align:center;font-size:20px;margin-bottom:20px;">
-        Login to Here <b class="text-primary">{{common.APP_NAME}}</b>
+        Login to <b class="text-primary">{{common.APP_NAME}}</b>
       </span>
-      <div class="login-message-holder login-spacer" v-if="errorMessage != null">
-        <span class="text-danger"><b>Oops!</b> {{errorMessage}}</span>
-      </div>
-      <div>
-        <div class="input-group login-spacer">
-          <span class="input-group-addon" id="addon-1"><i class="fa fa-user"></i></span>
-          <div class="input-group">
-            <input type="text" class="form-control form-control-login" placeholder="Username or Email" aria-describedby="addon-1" v-model="username">
+      <div class="signup-holder">
+        <div style="width:100%;float:left;text-align:center;font-size:14px;margin-bottom:1px;" class="login-message-holder login-spacer text-center" v-if="errorMessage != null">
+          <span class="text-danger text-center"><b>Oops!</b> {{errorMessage}}</span>
+        </div>
+        <div>
+          <div class="input-group login-spacer">
+            <span class="input-group-addon" id="addon-1"><i class="fa fa-user"></i></span>
+            <div class="input-group">
+              <input type="text" class="form-control form-control-login" placeholder="Username or Email" aria-describedby="addon-1" v-model="username">
+            </div>
           </div>
-        </div>
-        <div class="input-group login-spacer">
-          <span class="input-group-addon" id="addon-2"><i class="fa fa-key"></i></span>
-          <div class="input-group">
-            <input class="form-control form-control-login" :type="visibility" placeholder="********" aria-describedby="addon-2" v-model="password" @keyup.enter="logIn()">
-            <span class="input-group-addon password">
-              <i v-if="visibility == 'password'" @click="showPassword()" class="fa fa-eye" aria-hidden="true"></i>
-              <i v-if="visibility == 'text'" @click="hidePassword()" class="fa fa-eye-slash" aria-hidden="true"></i>
-            </span>
+          <div class="input-group login-spacer">
+            <span class="input-group-addon" id="addon-2"><i class="fa fa-key"></i></span>
+            <div class="input-group">
+              <input class="form-control form-control-login" style="border-right-style: none;" :type="visibility" placeholder="********" aria-describedby="addon-2" v-model="password" @keyup.enter="logIn()">
+              <span style="background: white;" class="input-group-addon password">
+                <i v-if="visibility == 'password'" @click="showPassword()" class="fa fa-eye" aria-hidden="true"></i>
+                <i v-if="visibility == 'text'" @click="hidePassword()" class="fa fa-eye-slash" aria-hidden="true"></i>
+              </span>
+            </div>
           </div>
-        </div>
-        <button class="btn btn-primary btn-block login-spacer" v-on:click="logIn()">Login</button>
-        <button class="btn btn-warning btn-block login-spacer" v-on:click="redirect('/request_reset_password')">Forgot your Password?</button>
-        <br>
-        <div class="container-fluid separator">
-            or
-        </div>
-        <br>
-        <button class="btn btn-secondary btn-block login-spacer" v-on:click="redirect('/signup')">Create Account Now!</button>
+          <button class="btn btn-primary btn-block login-spacer" v-on:click="logIn()">Login</button>
+          <button class="btn btn-warning btn-block login-spacer" v-on:click="redirect('/request_reset_password')">Forgot your Password?</button>
+          <br>
+          <div class="container-fluid separator">
+              or
+          </div>
+          <br>
+          <button class="btn btn-secondary btn-block login-spacer" v-on:click="redirect('/signup')">Create Account Now!</button>
 
-<!--         <button class="btn btn-secondary btn-block login-spacer" v-on:click="redirect('/paymentConfirmation/kennettecanales@gmail.com/BWGFK8XY74RM1C2LZVEITPAJQ9D65N03/U4381TYWQKLIGS79DJNME5AVBRZPFH2O')">Payment Confirmation</button> -->
-        <!-- <button class="btn btn-secondary btn-block login-spacer" v-on:click="redirect('/login_verification/magalso12/50DBXMFRGU6WI8VC3NA1OHLP7YTE92JS')">Verification</button> -->
+  <!--         <button class="btn btn-secondary btn-block login-spacer" v-on:click="redirect('/paymentConfirmation/kennettecanales@gmail.com/BWGFK8XY74RM1C2LZVEITPAJQ9D65N03/U4381TYWQKLIGS79DJNME5AVBRZPFH2O')">Payment Confirmation</button> -->
+          <!-- <button class="btn btn-secondary btn-block login-spacer" v-on:click="redirect('/login_verification/magalso12/50DBXMFRGU6WI8VC3NA1OHLP7YTE92JS')">Verification</button> -->
+        </div>
       </div>
     </div>
   </div>
