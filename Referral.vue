@@ -14,25 +14,54 @@
         </span>
         
         <div class="signup-holder">
-          <div class="login-message-holder login-spacer text-center" v-if="errorMessage != ''">
+          <div class="login-message-holder login-spacer text-center" v-if="errorMessage !== null">
             <span class="text-danger text-center"><b>Oops!</b> {{errorMessage}}</span>
+          </div>
+          <div class="login-message-holder login-spacer text-center" v-if="errorMessage2 !== null">
+            <span class="text-danger text-center"><b>Oops!</b> {{errorMessage2}}</span>
+          </div>
+          <div class="login-message-holder login-spacer text-center" v-if="errorMessage3 !== null">
+            <span class="text-danger text-center"><b>Oops!</b> {{errorMessage3}}</span>
+          </div>
+          <div class="login-message-holder login-spacer text-center" v-if="errorMessage4 !== null">
+            <span class="text-danger text-center"><b>Oops!</b> {{errorMessage4}}</span>
+          </div>
+          <div class="login-message-holder login-spacer text-center" v-if="errorMessage5 !== null">
+            <span class="text-danger text-center"><b>Oops!</b> {{errorMessage5}}</span>
+          </div>
+          <div class="login-message-holder login-spacer text-center" v-if="errorMessage6 !== null">
+            <span class="text-danger text-center"><b>Oops!</b> {{errorMessage6}}</span>
+          </div>
+          <div class="login-message-holder login-spacer text-center" v-if="errorMessage7 !== null">
+            <span class="text-danger text-center"><b>Oops!</b> {{errorMessage7}}</span>
+          </div>
+          <div class="login-message-holder login-spacer text-center" v-if="successMessage !== null">
+            <span class="text-success text-center"><b>Wow!</b> {{successMessage}}</span>
           </div>
           <div>
             <div class="input-group login-spacer">
               <span class="input-group-addon" id="addon-1"><i class="fa fa-user"></i></span>
-              <input type="text" class="form-control form-control-login" placeholder="Username" aria-describedby="addon-1" v-model="username">
+              <input v-on:keyup="validate('username')" type="text" class="form-control form-control-login" placeholder="Username" aria-describedby="addon-1" v-model="username">
             </div>
             <div class="input-group login-spacer">
               <span class="input-group-addon" id="addon-1"><i class="fa fa-envelope"></i></span>
-              <input type="text" class="form-control form-control-login" placeholder="Email" aria-describedby="addon-1" v-model="email" disabled>
+              <input v-on:keyup="validate('email')" type="text" class="form-control form-control-login" placeholder="Email" aria-describedby="addon-1" v-model="email" disabled>
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon" id="addon-2"><i class="fa fa-key"></i></span>
+                <input v-on:keyup="validate('password')" style="border-right-style: none;" class="form-control form-control-login" :type="visibility" placeholder="Password" aria-describedby="addon-2" v-model="password">
+                <span style="background: white;" class="input-group-addon">
+                  <i v-if="visibility == 'password'" @click="showPassword('password')" class="fa fa-eye" aria-hidden="true"></i>
+                  <i v-if="visibility == 'text'" @click="hidePassword('password')" class="fa fa-eye-slash" aria-hidden="true"></i>
+                </span>
             </div>
             <div class="input-group login-spacer">
               <span class="input-group-addon" id="addon-2"><i class="fa fa-key"></i></span>
-              <input type="password" class="form-control form-control-login" placeholder="Password" aria-describedby="addon-2" v-model="password">
-            </div>
-            <div class="input-group login-spacer">
-              <span class="input-group-addon" id="addon-2"><i class="fa fa-key"></i></span>
-              <input type="password" class="form-control form-control-login" placeholder="Confirm Password" aria-describedby="addon-2" v-model="cpassword">
+                <input v-on:keyup="validate('cpassword')" style="border-right-style: none;" class="form-control form-control-login" :type="visibilityC" placeholder="Confirm Password" aria-describedby="addon-2" v-model="cpassword">
+                <span style="background: white;" class="input-group-addon">
+                  <i v-if="visibilityC == 'password'" @click="showPassword('cpassword')" class="fa fa-eye" aria-hidden="true"></i>
+                  <i v-if="visibilityC == 'text'" @click="hidePassword('cpassword')" class="fa fa-eye-slash" aria-hidden="true"></i>
+                </span>
             </div>
             <button class="btn btn-primary btn-block login-spacer" v-on:click="signUp()">Register</button>
             <div class="input-group login-spacer">
@@ -46,8 +75,6 @@
         </div>
       </div>
     </div>
-
-  </div>
 </template>
 <style scoped>
 .signup-container, .holder{
@@ -162,17 +189,40 @@ export default {
       password: '',
       cpassword: '',
       type: 'USER',
-      errorMessage: '',
+      errorMessage: null,
+      errorMessage2: null,
+      errorMessage3: null,
+      errorMessage4: null,
+      errorMessage5: null,
+      errorMessage6: null,
+      errorMessage7: null,
+      successMessage: null,
       user: AUTH.user,
       tokenData: AUTH.tokenData,
       flag: false,
       schools: null,
       schoolIndex: null,
       config: CONFIG,
-      common: COMMON
+      common: COMMON,
+      visibility: 'password',
+      visibilityC: 'password'
     }
   },
   methods: {
+    showPassword(pass) {
+      if(pass === 'password'){
+        this.visibility = 'text'
+      } else {
+        this.visibilityC = 'text'
+      }
+    },
+    hidePassword(pass) {
+      if(pass === 'cpassword'){
+        this.visibilityC = 'password'
+      } else {
+        this.visibility = 'password'
+      }
+    },
     signUp(){
       this.validate()
       let parameter = {
@@ -183,7 +233,7 @@ export default {
         account_type: this.type,
         referral_code: this.code
       }
-      if(this.flag === true){
+      if(this.errorMessage === null && this.errorMessage2 === null && this.errorMessage3 === null && this.errorMessage4 === null && this.errorMessage5 === null && this.errorMessage6 === null && this.errorMessage7 === null){
         $('#loading').css({'display': 'block'})
         this.APIRequest('accounts/create', parameter).then(response => {
           $('#loading').css({'display': 'none'})
@@ -201,26 +251,59 @@ export default {
               }
             }
           }
-          // this.redirect('/verification/' + this.email)
-          // this.login()
         })
       }
     },
     redirect(parameter){
       ROUTER.push(parameter)
     },
-    validate(){
-      if(this.username.length >= 6 && this.email !== null && this.password !== null && this.password.localeCompare(this.cpassword) === 0 && this.type !== null){
-        this.flag = true
-      }else if(this.username.length < 6){
-        this.errorMessage = 'Username must be atleast 6 characters.'
-      }else if(this.password.length < 6){
-        this.errorMessage = 'Password must be atleast 6 characters'
-      }else if(this.password.localeCompare(this.cpassword) !== 0){
-        this.errorMessage = 'Password did not matched'
+    strong(){
+      this.successMessage = 'Strong password.'
+    },
+    validate(input){
+      this.successMessage = null
+      let reqWhiteSpace = /\s/
+      if(input === 'username') {
+        this.errorMessage = null
+        if(reqWhiteSpace.test(this.username)){
+          this.errorMessage = 'Username should not contain a space.'
+        } else if(this.username.length < 6){
+          this.errorMessage2 = 'Username must be atleast 6 characters.'
+        } else {
+          this.errorMessage = null
+          this.errorMessage2 = null
+        }
+      } else if(input === 'email') {
+        this.errorMessage3 = null
+        if(AUTH.validateEmail(this.email) === false){
+          this.errorMessage3 = 'You have entered an invalid email address.'
+        } else {
+          this.errorMessage3 = null
+        }
+      } else if(input === 'password') {
+        this.errorMessage4 = null
+        if(this.password.length < COMMON.passwordLimit){
+          this.errorMessage4 = 'Password must be atleast ' + COMMON.passwordLimit + ' characters.'
+        }else if(/^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/.test(this.password)){
+          this.strong()
+          this.errorMessage4 = null
+          this.errorMessage5 = null
+        } else {
+          this.errorMessage5 = 'Password must be alphanumeric characters. It should contain 1 number, 1 special character and 1 capital letter.'
+        }
+      } else if(input === 'cpassword') {
+        this.errorMessage6 = null
+        this.successMessage = null
+        if(this.password.localeCompare(this.cpassword) !== 0){
+          this.errorMessage6 = 'Password did not match.'
+        } else {
+          this.errorMessage6 = null
+        }
+      } else if(this.username.length >= 6 && this.email !== null && this.password !== null && this.password.length >= 6 && this.password.localeCompare(this.cpassword) === 0 && this.type !== null && AUTH.validateEmail(this.email) === true){
+        this.errorMessage = null
       }else{
-        this.errorMessage = 'Please fill in all required fields.'
-        this.flag = false
+        this.errorMessage7 = 'Please fill in all required fields.'
+        this.errorMessage7 = null
       }
     },
     login(){
