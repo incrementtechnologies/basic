@@ -226,7 +226,10 @@ export default {
       }
     },
     signUp(){
-      this.validate()
+      this.validate('email')
+      this.validate('username')
+      this.validate('password')
+      this.validate('cpassword')
       let parameter = {
         username: this.username,
         email: this.email,
