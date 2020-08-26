@@ -139,6 +139,7 @@ export default {
         this.APIRequest('accounts/request_reset', parameter).then(response => {
           $('#loading').css({display: 'none'})
           this.hide = true
+          this.errorMessage = null
         })
       }
     },
@@ -146,7 +147,9 @@ export default {
       if(this.email === null || this.email === ''){
         this.flag = false
         this.errorMessage = 'Please enter your Email Address'
-      }else{
+      } else if(AUTH.validateEmail(this.email) === false){
+        this.errorMessage = 'You have entered an invalid email address.'
+      } else {
         this.flag = true
       }
     },
