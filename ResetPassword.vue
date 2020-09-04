@@ -16,11 +16,13 @@
         </div>
         <div class="input-group form-spacer" v-if="updateFlag === false">
           <span class="input-group-addon recover-addon" id="addon-2"><i class="fa fa-key"></i></span>
-          <input type="password" class="form-control form-control-login" placeholder="New Password" aria-describedby="addon-2" v-model="password">
+          <input class="form-control form-control-login" :type="showNewPassword ? 'password': 'text'" placeholder="New Password" aria-describedby="addon-2" v-model="password">
+          <button type="button" class="input-group-addon" id="showNewPassword" @click="showNewPassword = !showNewPassword"><i :class="['fa', {'fa-eye': showNewPassword}, {'fa-eye-slash': !showNewPassword}]"></i></button>
         </div>
         <div class="input-group form-spacer" v-if="updateFlag === false">
           <span class="input-group-addon recover-addon" id="addon-2"><i class="fa fa-key"></i></span>
-          <input type="password" class="form-control form-control-login" placeholder="Confirm New Password" aria-describedby="addon-2" v-model="cPassword">
+          <input class="form-control form-control-login" :type="showConfirmPassword ? 'password': 'text'" placeholder="Confirm New Password" aria-describedby="addon-2" v-model="cPassword">
+          <button type="button" class="input-group-addon" id="showConfirmPassword" @click="showConfirmPassword = !showConfirmPassword"><i :class="['fa', {'fa-eye': showConfirmPassword}, {'fa-eye-slash': !showConfirmPassword}]"></i></button>
         </div>
         <br>
         <button class="btn btn-primary btn-block login-spacer" v-on:click="reset()" v-if="updateFlag === false">Continue</button>
@@ -147,7 +149,9 @@ export default {
       username: this.$route.params.username,
       updateFlag: false,
       config: CONFIG,
-      common: COMMON
+      common: COMMON,
+      showNewPassword: 'password',
+      showConfirmPassword: 'password'
     }
   },
   methods: {
