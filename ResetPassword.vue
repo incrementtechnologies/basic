@@ -16,11 +16,19 @@
         </div>
         <div class="input-group form-spacer" v-if="updateFlag === false">
           <span class="input-group-addon recover-addon" id="addon-2"><i class="fa fa-key"></i></span>
-          <input type="password" class="form-control form-control-login" placeholder="New Password" aria-describedby="addon-2" v-model="password">
+          <input :type="visibility" style="border-right-style: none;" class="form-control form-control-login" placeholder="New Password" aria-describedby="addon-2" v-model="password">
+          <span style="background: white;" class="input-group-addon">
+            <i v-if="visibility == 'password'" @click="showPassword('password')" class="fa fa-eye" aria-hidden="true"></i>
+            <i v-if="visibility == 'text'" @click="hidePassword('password')" class="fa fa-eye-slash" aria-hidden="true"></i>
+          </span>
         </div>
         <div class="input-group form-spacer" v-if="updateFlag === false">
           <span class="input-group-addon recover-addon" id="addon-2"><i class="fa fa-key"></i></span>
-          <input type="password" class="form-control form-control-login" placeholder="Confirm New Password" aria-describedby="addon-2" v-model="cPassword">
+          <input :type="visibilityC" style="border-right-style: none;" class="form-control form-control-login" placeholder="Confirm New Password" aria-describedby="addon-2" v-model="cPassword">
+          <span style="background: white;" class="input-group-addon">
+            <i v-if="visibilityC == 'password'" @click="showPassword('cpassword')" class="fa fa-eye" aria-hidden="true"></i>
+            <i v-if="visibilityC == 'text'" @click="hidePassword('cpassword')" class="fa fa-eye-slash" aria-hidden="true"></i>
+          </span>
         </div>
         <br>
         <button class="btn btn-primary btn-block login-spacer" v-on:click="reset()" v-if="updateFlag === false">Continue</button>
@@ -147,10 +155,26 @@ export default {
       username: this.$route.params.username,
       updateFlag: false,
       config: CONFIG,
-      common: COMMON
+      common: COMMON,
+      visibility: 'password',
+      visibilityC: 'password'
     }
   },
   methods: {
+    showPassword(pass) {
+      if(pass === 'password'){
+        this.visibility = 'text'
+      } else {
+        this.visibilityC = 'text'
+      }
+    },
+    hidePassword(pass) {
+      if(pass === 'cpassword'){
+        this.visibilityC = 'password'
+      } else {
+        this.visibility = 'password'
+      }
+    },
     reset(){
       this.validate()
       if(this.flag === true){
