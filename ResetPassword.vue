@@ -16,13 +16,19 @@
         </div>
         <div class="input-group form-spacer" v-if="updateFlag === false">
           <span class="input-group-addon recover-addon" id="addon-2"><i class="fa fa-key"></i></span>
-          <input class="form-control form-control-login" :type="showNewPassword ? 'password': 'text'" placeholder="New Password" aria-describedby="addon-2" v-model="password">
-          <button type="button" class="input-group-addon" id="showNewPassword" @click="showNewPassword = !showNewPassword"><i :class="['fa', {'fa-eye': showNewPassword}, {'fa-eye-slash': !showNewPassword}]"></i></button>
+          <input :type="visibility" style="border-right-style: none;" class="form-control form-control-login" placeholder="New Password" aria-describedby="addon-2" v-model="password">
+          <span style="background: white;" class="input-group-addon">
+            <i v-if="visibility == 'password'" @click="showPassword('password')" class="fa fa-eye" aria-hidden="true"></i>
+            <i v-if="visibility == 'text'" @click="hidePassword('password')" class="fa fa-eye-slash" aria-hidden="true"></i>
+          </span>
         </div>
         <div class="input-group form-spacer" v-if="updateFlag === false">
           <span class="input-group-addon recover-addon" id="addon-2"><i class="fa fa-key"></i></span>
-          <input class="form-control form-control-login" :type="showConfirmPassword ? 'password': 'text'" placeholder="Confirm New Password" aria-describedby="addon-2" v-model="cPassword">
-          <button type="button" class="input-group-addon" id="showConfirmPassword" @click="showConfirmPassword = !showConfirmPassword"><i :class="['fa', {'fa-eye': showConfirmPassword}, {'fa-eye-slash': !showConfirmPassword}]"></i></button>
+          <input :type="visibilityC" style="border-right-style: none;" class="form-control form-control-login" placeholder="Confirm New Password" aria-describedby="addon-2" v-model="cPassword">
+          <span style="background: white;" class="input-group-addon">
+            <i v-if="visibilityC == 'password'" @click="showPassword('cpassword')" class="fa fa-eye" aria-hidden="true"></i>
+            <i v-if="visibilityC == 'text'" @click="hidePassword('cpassword')" class="fa fa-eye-slash" aria-hidden="true"></i>
+          </span>
         </div>
         <br>
         <button class="btn btn-primary btn-block login-spacer" v-on:click="reset()" v-if="updateFlag === false">Continue</button>
@@ -150,11 +156,25 @@ export default {
       updateFlag: false,
       config: CONFIG,
       common: COMMON,
-      showNewPassword: 'password',
-      showConfirmPassword: 'password'
+      visibility: 'password',
+      visibilityC: 'password'
     }
   },
   methods: {
+    showPassword(pass) {
+      if(pass === 'password'){
+        this.visibility = 'text'
+      } else {
+        this.visibilityC = 'text'
+      }
+    },
+    hidePassword(pass) {
+      if(pass === 'cpassword'){
+        this.visibilityC = 'password'
+      } else {
+        this.visibility = 'password'
+      }
+    },
     reset(){
       this.validate()
       if(this.flag === true){
