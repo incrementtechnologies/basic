@@ -12,8 +12,10 @@
       </div>
       <div>
         <div class="input-group login-spacer">
-          <div class="input-group-addon" id="addon-1"><i class="fa fa-user"></i></div>
-          <input type="text" class="form-control form-control-login" placeholder="Username or Email" aria-describedby="addon-1" v-model="username">
+          <span class="input-group-addon" id="addon-1"><i class="fa fa-user"></i></span>
+          <div class="input-group">
+            <input type="text" class="form-control form-control-login" placeholder="Username or Email" aria-describedby="addon-1" v-model="username">
+          </div>
         </div>
         <div class="input-group login-spacer">
           <span class="input-group-addon" id="addon-2"><i class="fa fa-key"></i></span>
