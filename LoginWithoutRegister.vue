@@ -197,7 +197,9 @@ export default {
           }
         }, (response, status) => {
           $('#loading').css({'display': 'none'})
-          if(status === 401){
+          if(status === 400){
+            this.errorMessage = response.errors.password[0]
+          }else if(status === 401){
             this.errorMessage = 'Username and Password did not match.'
           }else if(status === 402){
             this.errorMessage = response.error
