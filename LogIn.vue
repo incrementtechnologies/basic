@@ -200,6 +200,7 @@ export default {
           }
         })
       }else{
+        $('#loading').css({'display': 'none'})
         this.errorMessage = 'Please fill up all the required fields.'
       }
     },
