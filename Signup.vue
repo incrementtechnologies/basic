@@ -6,29 +6,32 @@
           <img src="../../../assets/img/logo.png" v-on:click="redirect('/')">
         </div>
         <span style="width:100%;float:left;text-align:center;font-size:20px;margin-bottom:20px;">
-          Register to <b class="text-primary">{{common.APP_NAME}}</b>
+          Sign-up to <b class="text-primary">{{common.APP_NAME}}</b>
         </span>
         <div class="signup-holder">
+          <div class="login-message-holder login-spacer text-center" v-if="errorMessage2 !== null || errorMessage3 !== null || errorMessage4 !== null ||errorMessage5 !== null || errorMessage6 !== null || errorMessage7 !== null">
+            <span class="text-danger text-center"><b>Not so fast.</b></span>
+          </div>
           <div class="login-message-holder login-spacer text-center" v-if="errorMessage !== null">
-            <span class="text-danger text-center"><b>Oops!</b> {{errorMessage}}</span>
+            <span class="text-danger text-center"> {{errorMessage}}</span>
           </div>
           <div class="login-message-holder login-spacer text-center" v-if="errorMessage2 !== null">
-            <span class="text-danger text-center"><b>Oops!</b> {{errorMessage2}}</span>
+            <span class="text-danger text-center">{{errorMessage2}}</span>
           </div>
           <div class="login-message-holder login-spacer text-center" v-if="errorMessage3 !== null">
-            <span class="text-danger text-center"><b>Oops!</b> {{errorMessage3}}</span>
+            <span class="text-danger text-center">{{errorMessage3}}</span>
           </div>
           <div class="login-message-holder login-spacer text-center" v-if="errorMessage4 !== null">
-            <span class="text-danger text-center"><b>Oops!</b> {{errorMessage4}}</span>
+            <span class="text-danger text-center">{{errorMessage4}}</span>
           </div>
           <div class="login-message-holder login-spacer text-center" v-if="errorMessage5 !== null">
-            <span class="text-danger text-center"><b>Oops!</b> {{errorMessage5}}</span>
+            <span class="text-danger text-center">{{errorMessage5}}</span>
           </div>
           <div class="login-message-holder login-spacer text-center" v-if="errorMessage6 !== null">
-            <span class="text-danger text-center"><b>Oops!</b> {{errorMessage6}}</span>
+            <span class="text-danger text-center">{{errorMessage6}}</span>
           </div>
           <div class="login-message-holder login-spacer text-center" v-if="errorMessage7 !== null">
-            <span class="text-danger text-center"><b>Oops!</b> {{errorMessage7}}</span>
+            <span class="text-danger text-center">{{errorMessage7}}</span>
           </div>
           <div class="login-message-holder login-spacer text-center" v-if="successMessage !== null">
             <span class="text-success text-center"><b>Wow!</b> {{successMessage}}</span>
@@ -267,6 +270,7 @@ export default {
       this.successMessage = 'Strong password.'
     },
     validate(input){
+      console.log(input, 'hey you!')
       this.successMessage = null
       let reqWhiteSpace = /\s/
       if(input === 'username') {
@@ -274,7 +278,7 @@ export default {
         if(reqWhiteSpace.test(this.username)){
           this.errorMessage = 'Username should not contain a space.'
         } else if(this.username.length < 6){
-          this.errorMessage2 = 'Username must be atleast 6 characters.'
+          this.errorMessage2 = 'Username must be at least six (6) characters.'
         } else {
           this.errorMessage = null
           this.errorMessage2 = null
@@ -295,7 +299,7 @@ export default {
           this.errorMessage4 = null
           this.errorMessage5 = null
         } else {
-          this.errorMessage5 = 'Password must be alphanumeric characters. It should contain 1 number, 1 special character and 1 capital letter.'
+          this.errorMessage5 = 'Password must contain at least one (1) uppercase character, one (1) number and one (1) special character.'
         }
       } else if(input === 'cpassword') {
         this.errorMessage6 = null
@@ -307,10 +311,9 @@ export default {
         }
       } else if(this.username.length >= 6 && this.email !== null && this.password !== null && this.password.length >= 6 && this.password.localeCompare(this.cpassword) === 0 && this.type !== null && AUTH.validateEmail(this.email) === true){
         this.errorMessage = null
-      }else{
-        this.errorMessage7 = 'Please fill in all required fields.'
-        this.errorMessage7 = null
       }
+      this.errorMessage7 = 'Please fill in all required fields.'
+      this.errorMessage7 = null
     },
     login(){
       AUTH.authenticate(this.username, this.password, (response) => {
