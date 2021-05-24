@@ -28,7 +28,7 @@
           </div>
         </div>
         <button class="btn btn-primary btn-block login-spacer" v-on:click="logIn()">Login</button>
-        <button class="btn btn-warning btn-block login-spacer" v-on:click="redirect('/request_reset_password')">Forgot your Password?</button>
+        <button class="btn btn-warning btn-block login-spacer" hidden v-on:click="redirect('/request_reset_password')">Forgot your Password?</button>
         <br>
         <div class="container-fluid separator">
             or
