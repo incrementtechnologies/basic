@@ -17,7 +17,7 @@
         <div class="card RegisterCard">
           <div class="card-body RegisterCardBody">
             <div class="d-flex justify-content-center pt-3 pb-4 mb-3" style="font-weight: 1000">
-              <b>Register to PAYHIRAM For Business</b>
+              <b>Register to PAYHIRAM My Business</b>
             </div>
             <p
               class="mb-2 pb-0 errorMessage"

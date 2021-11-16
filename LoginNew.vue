@@ -17,7 +17,7 @@
         <div class="card LoginCard">
           <div class="card-body LoginCardBody">
             <div class="d-flex justify-content-center pt-3 pb-4 mb-3" style="font-weight: 1000">
-              <b>Login with PAYHIRAM For Business</b>
+              <b>Login with PAYHIRAM My Business</b>
             </div>
             <div class="fields">
               <p
