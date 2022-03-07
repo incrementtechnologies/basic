@@ -8,7 +8,7 @@
         Login to <b class="text-primary">{{common.APP_NAME}}</b>
       </span>
       <div class="login-message-holder login-spacer text-center" v-if="errorMessage != null">
-        <span class="text-danger text-center"><b>Oops!</b> {{errorMessage}}</span>
+        <p class="text-danger text-center"><b>Oops!</b> {{errorMessage}}</p>
       </div>
       <div>
         <div class="input-group login-spacer">
@@ -79,6 +79,7 @@
   min-height: 30px;
   font-size: 12px;
   float: left;
+  width: 100%;
   overflow: hidden;
 }
 
